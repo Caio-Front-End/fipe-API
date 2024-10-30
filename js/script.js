@@ -9,16 +9,37 @@ async function carsApi() {
     brandsJson.forEach((element) => {
       const brands = element.nome;
       const optionElement = document.createElement('option');
+      optionElement.value = brands;
       optionElement.innerText = brands;
       select.appendChild(optionElement);
     });
-    function handleClick(e) {
-      e.preventDefault();
-      console.log(select.value);
-    }
+    
+    select.addEventListener('change', function handleClick(){
 
-    select.addEventListener('change', handleClick);
+      const valorSelecionado = select.value;
+      
+      const filterBrands = brandsJson.filter(brand => brand.nome === `${valorSelecionado}`)
+      
+      filterBrands.forEach((key) => {
+        modelsApi(key.codigo)
+      })
+    });
   } catch (error) {}
 }
 
 carsApi();
+
+
+async function modelsApi(id) {
+  
+  const fetchApiModels = await fetch(
+    `https://parallelum.com.br/fipe/api/v1/carros/marcas/${id}/modelos`,
+  );
+  const modelsJson = await fetchApiModels.json();
+
+  console.log(modelsJson);
+  
+
+
+}
+
