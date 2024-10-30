@@ -1,45 +1,52 @@
-const select = document.querySelector('#marcas');
+const selectTipos = document.querySelectorAll('.tipos-div button');
+const selectMarcas = document.querySelector('#marcas');
+let dataType = '';
 
-async function carsApi() {
+
+selectTipos.forEach((botao) => {
+  botao.addEventListener('click', function () {
+    dataType = botao.getAttribute('data-type');
+    console.log(dataType);
+    carsApi(dataType);
+  });
+});
+
+async function carsApi(tipo) {
+  selectMarcas.innerHTML = '';
+
   try {
     const fetchApiBrands = await fetch(
-      'https://parallelum.com.br/fipe/api/v1/carros/marcas',
+      `https://parallelum.com.br/fipe/api/v1/${tipo}/marcas`
     );
     const brandsJson = await fetchApiBrands.json();
+
     brandsJson.forEach((element) => {
-      const brands = element.nome;
       const optionElement = document.createElement('option');
-      optionElement.value = brands;
-      optionElement.innerText = brands;
-      select.appendChild(optionElement);
-    });
-    
-    select.addEventListener('change', function handleClick(){
+      optionElement.value = element.codigo;
+      optionElement.innerText = element.nome;
+      selectMarcas.appendChild(optionElement);
 
-      const valorSelecionado = select.value;
-      
-      const filterBrands = brandsJson.filter(brand => brand.nome === `${valorSelecionado}`)
-      
-      filterBrands.forEach((key) => {
-        modelsApi(key.codigo)
-      })
     });
-  } catch (error) {}
+  } catch (error) {
+    console.error("Erro ao buscar marcas:", error);
+  }
 }
 
-carsApi();
+selectMarcas.addEventListener('change', function handleClick() {
+  const valorSelecionado = selectMarcas.value;
+  if (valorSelecionado) {
+    modelsApi(valorSelecionado, dataType);
+  }
+});
 
-
-async function modelsApi(id) {
-  
-  const fetchApiModels = await fetch(
-    `https://parallelum.com.br/fipe/api/v1/carros/marcas/${id}/modelos`,
-  );
-  const modelsJson = await fetchApiModels.json();
-
-  console.log(modelsJson);
-  
-
-
+async function modelsApi(id, tipo) {
+  try {
+    const fetchApiModels = await fetch(
+      `https://parallelum.com.br/fipe/api/v1/${tipo}/marcas/${id}/modelos`
+    );
+    const modelsJson = await fetchApiModels.json();
+    console.log(modelsJson);
+  } catch (error) {
+    console.error("Erro ao buscar modelos:", error);
+  }
 }
-
