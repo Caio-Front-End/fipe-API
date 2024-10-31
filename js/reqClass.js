@@ -1,34 +1,35 @@
 export class ReqApi {
+    constructor(url, div) {
+        this.url = url;
+        this.div = div;
+    }
 
-    async req(url, div){
+    async req(url = this.url, div = this.div) {
+        div.innerHTML = '';
+        try {
+            const fetchApi = await fetch(url);
+            const json = await fetchApi.json();
 
-    div.innerHTML = '';
+            if (Array.isArray(json)) {
+                json.forEach((element) => {
+                    this.adicionarOpcao(element);
+                });
+            } else {
+                const data = Object.values(json)[0];
+                data.forEach((element) => {
+                    this.adicionarOpcao(element)
+                })
+            }
+        } catch (error) {
+            console.error("Erro ao buscar:", error);
+        }
+    }
 
-        console.log(url, div);
-        
-
-    try {
-        const fetchApi = await fetch(
-            url
-        );
-        const json = await fetchApi.json();
-
-        console.log(json);
-        
-
-        json.forEach((element) => {
+    adicionarOpcao(element) {
         const optionElement = document.createElement('option');
         optionElement.value = element.codigo;
         optionElement.innerText = element.nome;
-        div.appendChild(optionElement);
-
-        });
-    } catch (error) {
-        console.error("Erro ao buscar marcas:", error);
-    }
-    
-
-
+        this.div.appendChild(optionElement);
     }
 
 }

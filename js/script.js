@@ -2,7 +2,8 @@ import { ReqApi } from "./reqClass.js";
 
 const selectTipos = document.querySelectorAll('.tipos-div button');
 const selectMarcas = document.querySelector('#marcas');
-const selectModelos = document.querySelector('#modelos')
+const selectModelos = document.querySelector('#modelos');
+const selectVeiculo = document.querySelector('.veiculo-div');
 let dataType = '';
 
 
@@ -18,21 +19,9 @@ selectTipos.forEach((botao) => {
 
 
 
-/* Escolher Marca do Veiculo */
+/* Escolher marca do Veiculo */
 
-
-function reqClass(url, div){
-
-  console.log('função ativada');
-  
-
-  const reqClass = new ReqApi()
-
-  reqClass.req(url, div)
-
-};
-
-selectMarcas.addEventListener('change', function handleClick() {
+selectMarcas.addEventListener('change', function () {
   const valorSelecionado = selectMarcas.value;
   if (valorSelecionado) {
     const url = `https://parallelum.com.br/fipe/api/v1/${dataType}/marcas/${valorSelecionado}/modelos`
@@ -41,21 +30,23 @@ selectMarcas.addEventListener('change', function handleClick() {
 });
 
 
+/* Escolher modelo do Veiculo */
+
+selectModelos.addEventListener('change', function () {
+  const valorSelecionado = selectModelos.value;
+  console.log(valorSelecionado);
+  const url = `https://parallelum.com.br/fipe/api/v1/${dataType}/marcas/${valorSelecionado}/modelos/${valorSelecionado}`
+  reqClass(url, selectVeiculo)
+})
 
 
-/* Escolher Modelo do Veiculo */
 
+/* Requisição da API */
 
+function reqClass(url, div){
 
+  const reqClass = new ReqApi(url, div)
 
-// async function modelsApi(id, tipo) {
-//   try {
-//     const fetchApiModels = await fetch(
-//       `https://parallelum.com.br/fipe/api/v1/${tipo}/marcas/${id}/modelos`
-//     );
-//     const modelsJson = await fetchApiModels.json();
-//     console.log(modelsJson);
-//   } catch (error) {
-//     console.error("Erro ao buscar modelos:", error);
-//   }
-// }
+  reqClass.req()
+
+};
