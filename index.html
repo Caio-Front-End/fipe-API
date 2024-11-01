@@ -4,21 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="style/style.css">
   </head>
 
   <body>
-    <div class="tipos-div">
-      <button data-type="carros">carros</button>
-      <button data-type="caminhoes">caminhões</button>
-      <button data-type="motos">motos</button>
-    </div>
+    <div class="pesquisa-div">
 
-    <div class="marcas-div">
-      <select id="marcas"></select>
-    </div>
+      <div class="logo">
+        <img src="./images/pngwing.com (9).png" alt="">
+        <h1>Puxa Fipe</h1>
+      </div>
 
-    <div class="modelos-div">
-      <select id="modelos"></select>
+      <div class="tipos-div style-div">
+        <label for="">Escolha o tipo de veíuclo:</label>
+        <br>
+        <button data-type="carros">carros</button>
+        <button data-type="caminhoes">caminhões</button>
+        <button data-type="motos">motos</button>
+      </div>
+  
+      <div class="marcas-div style-div">
+        <label for="">Escolha a marca do veíuclo:</label>
+        <br>
+        <select id="marcas"></select>
+      </div>
+  
+      <div class="modelos-div style-div">
+        <label for="">Escolha o modelo do veíuclo:</label>
+        <br>
+        <select id="modelos"></select>
+      </div>  
+
+      <div>
+        <button id="pesquisar" disabled type="submit">Ver Veículo</button>
+      </div>
+
     </div>
 
     <div class="veiculo-div">

@@ -1,6 +1,14 @@
 *{
     margin: 0 auto;
-    padding: 0 auto;
     box-sizing: border-box;
     font-family: sans-serif;
+}
+
+body{
+    width: 100vh;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
 }

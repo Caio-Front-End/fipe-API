@@ -1,0 +1,32 @@
+.style-div{
+    text-align: center;
+    margin-bottom: 4vh;
+    width: 60%;
+    label{
+        font-size: 20px;
+    }
+    select{
+        width: 100%;
+        padding: 4px;
+        font-size: 16px;
+    }
+    button{
+        padding: 4px;
+        font-size: 16px;
+        margin-right: 12px;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+    select, button{
+        margin-top: 10px;
+    }
+}
+
+#pesquisar{
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
