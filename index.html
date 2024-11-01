@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+  <div class="pesquisa-div">
+
+    <div class="logo">
+      <img src="./images/pngwing.com (9).png" alt="">
+      <h1>Puxa Fipe</h1>
+    </div>
+
+    <div class="tipos-div style-div">
+      <label for="">Escolha o tipo de veículo:</label>
+      <br>
+      <button data-type="carros"><img width="100px" height="60px" src="./images/types-svg/car-svgrepo-com.svg" alt=""></button>
+      <button data-type="caminhoes"><img width="100px" height="60px" src="./images/types-svg/truck-svgrepo-com.svg" alt=""></button>
+      <button data-type="motos"><img width="100px" height="60px" src="./images/types-svg/motorcycle-so-svgrepo-com.svg" alt=""></button>
+    </div>
+
+    <div class="marcas-div style-div">
+      <label for="">Escolha a marca do veículo:</label>
+      <br>
+      <select id="marcas"></select>
+    </div>
+
+    <div class="modelos-div style-div">
+      <label for="">Escolha o modelo do veículo:</label>
+      <br>
+      <select id="modelos"></select>
+    </div>
+
+    <div class="ano-div style-div">
+      <label for="">Escolha o ano do veículo:</label>
+      <br>
+      <select id="ano"></select>
+    </div>
+
+    <div>
+      <button id="pesquisar" disabled type="submit">Ver Veículo</button>
+    </div>
+
+  </div>
+
+  <div class="remove veiculo-div">
+  </div>
+
+  <script type="module" src="./js/script.js"></script>
+</body>
+
+</html>
